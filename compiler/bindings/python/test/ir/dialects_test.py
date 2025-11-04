@@ -449,8 +449,12 @@ def gpu_target_info_attribute_parsing():
     
     workgroup_count = gpu_target_info.workgroup_count
     simds_per_workgroup = gpu_target_info.simds_per_workgroup
-    assert workgroup_count == 304, f"Expected workgroup_count 304, got {workgroup_count}"
-    assert simds_per_workgroup == 4, f"Expected simds_per_workgroup 4, got {simds_per_workgroup}"
+    assert (
+        workgroup_count == 304
+    ), f"Expected workgroup_count 304, got {workgroup_count}"
+    assert (
+        simds_per_workgroup == 4
+    ), f"Expected simds_per_workgroup 4, got {simds_per_workgroup}"
 
     workgroup_count = gpu_target_info.workgroup_count
     simds_per_workgroup = gpu_target_info.simds_per_workgroup
