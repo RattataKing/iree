@@ -418,12 +418,12 @@ ireeHALExecutableTargetAttrGetGPUTargetInfo(MlirAttribute attr) {
   }
 
   targetInfo.simdsPerWgp =
-    wgpAttr.getSimdsPerWgp().value_or(targetInfo.simdsPerWgp);
+      wgpAttr.getSimdsPerWgp().value_or(targetInfo.simdsPerWgp);
 
   if (mlir::iree_compiler::IREE::GPU::TargetChipAttr chipAttr =
-    gpuTargetAttr.getChip()) {
-      targetInfo.wgpCount = chipAttr.getWgpCount();
-    }
+          gpuTargetAttr.getChip()) {
+    targetInfo.wgpCount = chipAttr.getWgpCount();
+  }
 
   targetInfo.mmaIntrinsics = wrap(builder.getArrayAttr({}));
   mlir::iree_compiler::IREE::GPU::MMAOpsArrayAttr mmaOpsArray =
