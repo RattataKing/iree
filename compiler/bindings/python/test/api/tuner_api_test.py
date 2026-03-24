@@ -691,11 +691,12 @@ def test_convert_constraints_op_to_smtlib():
         len(constraints_ops) == 1
     ), f"Should get 1 constraints op, got {len(constraints_ops)}"
     constraints_op = constraints_ops[0]
-    smtlib = iree_codegen.convert_constraints_op_to_smtlib(constraints_op)
+    smtlib = iree_codegen.convert_constraints_op_to_smtlib(
+        constraints_op, emit_reset=False
+    )
     assert smtlib is not None, "smtlib should be created"
     assert "; solver scope 0" in smtlib, f"Missing solver scope header."
-    # TODO: Add test for reset after integration with
-    # https://github.com/llvm/llvm-project/pull/187366
+    assert "(reset)" not in smtlib, "Unexpected reset."
 
     err_str = f"Knobs conversion failed. SMTLIB:\n{smtlib}"
     # knobs become declare-const constants (0-ary smt.declare_fun)
